@@ -1,0 +1,55 @@
+package ahmed;
+abstract class VisitorPass {
+    abstract int calculateTicketPrice(int numberOfVisitors);
+}
+
+
+class VIPPass extends VisitorPass {
+    private final int pricePerVisitor = 100; // VIP price
+
+    @Override
+    int calculateTicketPrice(int numberOfVisitors) {
+        return numberOfVisitors * pricePerVisitor;
+    }
+}
+
+class FamilyPass extends VisitorPass {
+    private final int pricePerVisitor = 50; // Discounted rate for families
+
+    @Override
+    int calculateTicketPrice(int numberOfVisitors) {
+       
+        int total = numberOfVisitors * pricePerVisitor;
+        if (numberOfVisitors >= 4) {
+            total -= total * 0.10; // 10% discount
+        }
+        return total;
+    }
+}
+
+class GeneralPass extends VisitorPass {
+    private final int pricePerVisitor = 70; 
+
+    @Override
+    int calculateTicketPrice(int numberOfVisitors) {
+        return numberOfVisitors * pricePerVisitor;
+    }
+}
+
+// Main class
+public class TicketSystem {
+    public static void main(String[] args) {
+        VisitorPass vip = new VIPPass();
+        VisitorPass family = new FamilyPass();
+        VisitorPass general = new GeneralPass();
+
+        int vipVisitors = 2;
+        int familyVisitors = 5;
+        int generalVisitors = 3;
+
+        System.out.println("=== Ticket Price Summary ===");
+        System.out.println("VIP Pass Price for " + vipVisitors + " visitors: $" + vip.calculateTicketPrice(vipVisitors));
+        System.out.println("Family Pass Price for " + familyVisitors + " visitors: $" + family.calculateTicketPrice(familyVisitors));
+        System.out.println("General Pass Price for " + generalVisitors + " visitors: $" + general.calculateTicketPrice(generalVisitors));
+    }
+}
