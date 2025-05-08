@@ -1,0 +1,55 @@
+import java.util.Scanner;
+
+// Division class with data members, getters, and setters
+class Division {
+    private int NuM1;
+    private int NuM2;
+
+   
+    public int getNuM1() {
+        return NuM1;
+    }
+
+    public int getNuM2() {
+        return NuM2;
+    }
+
+
+    public void setNuM1(int nuM1) {
+        this.NuM1 = nuM1;
+    }
+
+    public void setNuM2(int nuM2) {
+        this.NuM2 = nuM2;
+    }
+
+ 
+    public void performDivision() {
+        try {
+            int result = NuM1 / NuM2;
+            System.out.println(NuM1 + " / " + NuM2 + " = " + result);
+        } catch (ArithmeticException e) {
+            System.out.println("Error: Cannot divide " + NuM1 + " by zero.");
+        }
+    }
+}
+
+// Main class
+public class DivisionProgram {
+    public static void main(String[] args) {
+        try (Scanner scanner = new Scanner(System.in)) {
+            Division division = new Division();
+            
+            int num1 = 10;
+            
+            System.out.println("Enter numbers from 10 to 0 to divide (e.g., NuM1=10 and NuM2 from 9 to 0):");
+            
+            for (int num2 = 9; num2 >= 0; num2--) {
+                division.setNuM1(num1);
+                division.setNuM2(num2);
+                
+                division.performDivision(); // Perform and print result
+            }
+        }
+    }
+}
